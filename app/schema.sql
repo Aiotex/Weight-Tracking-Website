@@ -1,0 +1,27 @@
+DROP TABLE IF EXISTS user;
+
+DROP TABLE IF EXISTS post;
+
+CREATE TABLE user (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT UNIQUE NOT NULL,
+    password TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE user_settings (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    goal_weight REAL NOT NULL,
+    starting_weight REAL NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users (id)
+);
+
+CREATE TABLE entries (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    entry_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    weight REAL NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user (id)
+    CONSTRAINT unique_entry UNIQUE (entry_date)
+);
