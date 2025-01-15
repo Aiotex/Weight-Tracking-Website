@@ -1,5 +1,7 @@
+import os
 import sqlite3
 import click
+from werkzeug.security import check_password_hash, generate_password_hash
 from datetime import datetime
 from flask import current_app, g
 
@@ -13,6 +15,7 @@ sqlite3.register_converter(
 def init_app(app):
     app.teardown_appcontext(close_db_connection)
     app.cli.add_command(init_db_command)
+        
 
 def init_db():
     db = get_db_connection()

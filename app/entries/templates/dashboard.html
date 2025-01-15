@@ -1,31 +1,36 @@
 {% extends 'base.html' %}
 
-{% block header %}
-<h1>{% block title %}Dashboard{% endblock %}</h1>
+{% block title %}Dashboard{% endblock %}
+
+{% block head %}
+    <script type="text/javascript">
+        const getGraph = () => {
+            $ajax({
+                url: '/graph',
+                method: 'GET',
+                success: function(response) {
+                    alert(1)
+                    $('#graph').html(response); // Insert the HTML content
+                },
+            });
+        };
+
+        $(document).ready(() => {
+            getGraph()
+        });
+    </script>
 {% endblock %}
 
 {% block content %}
-<h1>Add entry</h1>
-<form method="post">
-    <label for="weight">weight</label>
-    <input id="weight" name="weight" type="number" step=".1" required>
-    <label for="entryDate">date</label>
-    <input id="entryDate" name="entryDate" type="date">
-    <input type="submit" value="Add entry">
-</form>
-{% for entry in entries %}
-    <div style="margin-top: 40px;">
-        <form action="{{ url_for('entries.update', id=entry['id']) }}" method="post">
-            <label for="weight">weight</label>
-            <input id="weight" name="weight" type="number" step=".1" value="{{ entry['weight'] }}" required>
-            <label for="entryDate">date</label>
-            <span>{{ entry['entry_date'] }}</span>
-            <input type="submit" value="Update">
-        </form>
+    <h1>Dashboard</h1>
 
-        <form action="{{ url_for('entries.delete', id=entry['id']) }}" method="post">
-            <input type="submit" value="Delete">
-        </form>
-    </div>
-{% endfor %}
+    <form action="{{ url_for('entries.create') }}" method="POST">
+        <label for="weight">weight</label>
+        <input id="weight" name="weight" type="number" step=".1" required>
+        <label for="entryDate">date</label>
+        <input id="entryDate" name="entryDate" type="date" value="{{ entry_date }}" required>
+        <input type="submit" value="Add entry">
+    </form>
+
+    <div id="graph"></div>
 {% endblock %}
