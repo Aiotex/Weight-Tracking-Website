@@ -5,11 +5,14 @@
 {% block head %}
     <script type="text/javascript">
         const getGraph = () => {
-            $ajax({
-                url: '/graph',
-                method: 'GET',
+            $.ajax({
+                url: "{{ url_for('entries.graph') }}",
+                type: 'GET',
+                data: {
+                    time_period: $('#timePeriod').find(":selected").val(), 
+                    group_by: $('#groupBy').find(":selected").val()
+                },
                 success: function(response) {
-                    alert(1)
                     $('#graph').html(response); // Insert the HTML content
                 },
             });
@@ -17,6 +20,8 @@
 
         $(document).ready(() => {
             getGraph()
+            $('#timePeriod').change(getGraph)
+            $('#groupBy').change(getGraph)
         });
     </script>
 {% endblock %}
@@ -31,6 +36,28 @@
         <input id="entryDate" name="entryDate" type="date" value="{{ entry_date }}" required>
         <input type="submit" value="Add entry">
     </form>
+
+    <div>
+        <label for="timePeriod">Time Period</label>
+        <select id="timePeriod">
+            <option value="a">All</option>
+            <option value="w">Week</option>
+            <option value="m">Month</option>
+            <option value="q">3 Months</option>
+            <option value="h">6 Months</option>
+            <option value="y">Year</option>
+        </select>
+
+        <label for="groupBy">Group By</label>
+        <select id="groupBy">
+            <option value="d">None</option>
+            <option value="w">Week</option>
+            <option value="m">Month</option>
+            <option value="y">Year</option>
+        </select>
+    </div>
+
+    
 
     <div id="graph"></div>
 {% endblock %}

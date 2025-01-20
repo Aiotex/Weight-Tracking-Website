@@ -1,25 +1,30 @@
 
 
 <script type="text/javascript">
-    alert(80)
 </script>
 
-<div>HELOWWWWWWW</div>
-<!-- <div class="graph">
-    hello
+
+<div class="graph">
+    <!-- {% for entry in entries %}
+        <div style="margin-top: 40px;">
+            <label for="id">id</label>
+            <span style="color: brown;">{{ entry['id'] }}</span>
+            <label for="weight">weight</label>
+            <span style="color: brown;">{{ entry['weight'] }}</span>
+            <label for="entryDate">date</label>
+            <span style="color: brown;">{{ entry['entry_date'] }}</span>
+        </div>
+    {% endfor %} -->
+    
+
+    <span style="color: gold;">{{today }}</span>
+
     {% for entry in entries %}
         <div style="margin-top: 40px;">
-            <form action="{{ url_for('entries.update', id=entry['id']) }}" method="POST">
-                <label for="weight">weight</label>
-                <input id="weight" name="weight" type="number" step=".1" value="{{ entry['weight'] }}" required>
-                <label for="entryDate">date</label>
-                <span>{{ entry['entry_date'] }}</span>
-                <input type="submit" value="Update">
-            </form>
-        
-            <form action="{{ url_for('entries.delete', id=entry['id']) }}" method="POST">
-                <input type="submit" value="Delete">
-            </form>
+            <label for="id">{{ entry.keys()[0] }}</label>
+            <span style="color: brown;">{{ entry[entry.keys()[0]] }}</span>
+            <label for="weight">{{ entry.keys()[1] }}</label>
+            <span style="color: brown;">{{ entry[entry.keys()[1]] }}</span>
         </div>
     {% endfor %}
-</div> -->
+</div>

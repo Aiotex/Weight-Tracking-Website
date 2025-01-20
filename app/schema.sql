@@ -23,7 +23,7 @@ CREATE TABLE user_settings (
 CREATE TABLE entries (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER NOT NULL,
-    entry_date DATA DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    entry_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     weight REAL NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users (id)
     CONSTRAINT unique_entry UNIQUE (entry_date)
