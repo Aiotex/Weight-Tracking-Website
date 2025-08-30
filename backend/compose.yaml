@@ -50,3 +50,5 @@ services:
 volumes:
     node_modules:
     pgdata:
+
+# TODO: change image and containers names to acoid nflicts with diffrent projects
