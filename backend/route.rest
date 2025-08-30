@@ -1,0 +1,138 @@
+GET http://localhost:3000/
+
+###
+
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+    "firstName": "firstname6",
+    "lastName": "lastname6",
+    "email": "refresh9@gmail.com",
+    "password": "refreshpassword"
+}
+
+###
+
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "john.doe@example.com",
+    "password": "testpassword2"
+}
+
+###
+
+POST http://localhost:3000/api/auth/token
+Cookie: refreshToken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6MTJ9LCJpYXQiOjE3NTA3OTE0MjgsImV4cCI6MTc1NTk3NTQyOH0.1ZvcaatP3fpKRi8C8MERVC_9EDyAJaIIUXyH2Uk_aTA"
+
+
+###
+
+GET http://localhost:3000/api/users/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxfSwiaWF0IjoxNzUzNzEyODYyLCJleHAiOjE3NTYzMDQ4NjJ9.UFL5wDBfAFQpHF68OGmJUUbWsziUVxQU3tUSfVyDDGE
+
+###
+
+PATCH http://localhost:3000/api/users/me
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxfSwiaWF0IjoxNzUzNzEyODYyLCJleHAiOjE3NTYzMDQ4NjJ9.UFL5wDBfAFQpHF68OGmJUUbWsziUVxQU3tUSfVyDDGE
+
+{
+    "firstName": "jhon",
+    "password": "testpassword2",
+    "dateOfBirth": "2024-08-13",
+    "gender": "MALE",
+    "heightCm": 49.4,
+    "unitPreference": "METRIC" 
+}
+
+    # "email": "",
+    # "password": "",
+    # "height": "",
+    # "dateOfBirth": "2026-08-13",
+    # "gender": "",
+    # "unitPreference": "METRIC cm IMPERIAL in" 
+
+###
+
+PATCH http://localhost:3000/api/users/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzQ3OTE4ODE1LCJleHAiOjE3NTMxMDI4MTV9.Q65MtC9DezJ-AQPC5cE8za2ytqurvVzyZlxpdr8YtbQ
+
+###
+
+GET http://localhost:3000/api/goals
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzQ3OTE4ODE1LCJleHAiOjE3NTMxMDI4MTV9.Q65MtC9DezJ-AQPC5cE8za2ytqurvVzyZlxpdr8YtbQ
+
+###
+
+POST http://localhost:3000/api/goals
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzQ3OTE4ODE1LCJleHAiOjE3NTMxMDI4MTV9.Q65MtC9DezJ-AQPC5cE8za2ytqurvVzyZlxpdr8YtbQ
+
+{
+    "targetWeightKg": 10,
+    "targetDate": "2024-05-13",
+    "startWeightKg": 70,
+    "startDate": "2024-08-10"
+}
+
+    # "targetWeightKg": "",
+    # "targetDate": "",
+    # "startWeightKg": "",
+    # "startDate": ""
+
+###
+
+DELETE http://localhost:3000/api/goals
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzQ3OTE4ODE1LCJleHAiOjE3NTMxMDI4MTV9.Q65MtC9DezJ-AQPC5cE8za2ytqurvVzyZlxpdr8YtbQ
+
+###
+
+GET http://localhost:3000/api/weights/date/2022-03-20
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzQ3OTE4ODE1LCJleHAiOjE3NTMxMDI4MTV9.Q65MtC9DezJ-AQPC5cE8za2ytqurvVzyZlxpdr8YtbQ
+
+###
+
+POST http://localhost:3000/api/weights
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxfSwiaWF0IjoxNzUzODA5ODcxLCJleHAiOjE3NTY0MDE4NzF9.TFmLN_RxwfnPynX9knhgpyUHMcW-2UI0242PDM2WKiQ
+
+{
+    "weightKg": 70,
+    "date": "2022-03-23",
+    "notes": "testinotes"
+}
+
+###
+
+PATCH http://localhost:3000/api/weights/date/2022-03-22
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzQ3OTE4ODE1LCJleHAiOjE3NTMxMDI4MTV9.Q65MtC9DezJ-AQPC5cE8za2ytqurvVzyZlxpdr8YtbQ
+
+{
+    "weightKg": "50.99",
+    "notes": "778"
+}
+
+###
+
+GET http://localhost:3000/api/weights/date/2022-03-24
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxfSwiaWF0IjoxNzUzODA5ODcxLCJleHAiOjE3NTY0MDE4NzF9.TFmLN_RxwfnPynX9knhgpyUHMcW-2UI0242PDM2WKiQ
+
+###
+
+GET http://localhost:3000/api/weights?start_date=2025-07-27&end_date=2025-07-29
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxfSwiaWF0IjoxNzUzODA5ODcxLCJleHAiOjE3NTY0MDE4NzF9.TFmLN_RxwfnPynX9knhgpyUHMcW-2UI0242PDM2WKiQ
+###
+
+GET http://localhost:3000/api/weights/latest
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxfSwiaWF0IjoxNzUzODA5ODcxLCJleHAiOjE3NTY0MDE4NzF9.TFmLN_RxwfnPynX9knhgpyUHMcW-2UI0242PDM2WKiQ
+
+###
+
+GET http://localhost:3000/api/weights/average/weekly?start_date=2022-03-19
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxfSwiaWF0IjoxNzUzODA5ODcxLCJleHAiOjE3NTY0MDE4NzF9.TFmLN_RxwfnPynX9knhgpyUHMcW-2UI0242PDM2WKiQ

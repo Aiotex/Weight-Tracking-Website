@@ -1,0 +1,103 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int             @id @default(autoincrement())
+  firstName     String?          
+  lastName      String?          
+  email         String          @unique
+  passwordHash  String
+  role          Role            @default(USER)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  profile       Profile?        @relation("UserProfile")
+  goal          Goal?           @relation("UserGoal")
+  weightRecords Weight_Record[] @relation("UserWeightRecords")
+  refreshTokens Refresh_Token[] @relation("UserRefreshTokens")
+}
+
+model Refresh_Token {
+  id         Int      @id @default(autoincrement())
+  userId     Int      @unique
+  user       User     @relation("UserRefreshTokens", fields: [userId], references: [id], onDelete: Cascade)
+  tokenHash  String   @unique
+  revoked    Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Profile {
+  id             Int       @id @default(autoincrement())
+  userId         Int       @unique
+  user           User      @relation("UserProfile", fields: [userId], references: [id], onDelete: Cascade)
+  avatar         String?   @db.VarChar(255)
+  heightCm       Float?
+  dateOfBirth    DateTime? @db.Date
+  gender         Gender    @default(OTHER) 
+  unitPreference Unit      @default(METRIC)
+  weekStartsOn   Int       @default(0) // 0 = Sunday, 1 = Monday
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+}
+
+model Goal {
+  id             Int      @id @default(autoincrement())
+  userId         Int      @unique
+  user           User     @relation("UserGoal", fields: [userId], references: [id], onDelete: Cascade)
+  targetWeightKg Float
+  targetDate     DateTime @db.Date
+  startWeightKg  Float    
+  startDate      DateTime @db.Date @default(now())
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+}
+
+model Weight_Record {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  user       User     @relation("UserWeightRecords", fields: [userId], references: [id], onDelete: Cascade)
+  weightKg   Float
+  date       DateTime @db.Date @default(now())
+  notes      String?  @db.VarChar(100)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  @@unique([userId, date])
+}
+
+enum Unit {
+  METRIC
+  /*
+    Length: Millimeter (mm), Centimeter (cm), Meter (m), Kilometer (km)
+    Weight: Milligram (mg), Gram (g), Kilogram (kg), Tonne (t)
+    Volume: Milliliter (mL), Liter (L)
+    Temperature: Celsius (°C)
+  */
+  IMPERIAL
+  /*
+    Length: Inch (in), Foot (ft), Yard (yd), Mile (mi)
+    Weight: Ounce (oz), Pound (lb), Stone (st), Ton (US)
+    Volume: Fluid ounce (fl oz), Cup (cup), Pint (pt), Quart (qt), Gallon (gal)
+    Temperature: Fahrenheit (°F)
+  */
+}
+
+enum Role {
+  ADMIN
+  USER
+  DEMO
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
