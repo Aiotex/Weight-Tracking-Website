@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+@import "tailwindcss";
+
+@theme {
+	--font-sans: "poppins", "sans-serif";
+
+	--color-background: #111214;
+	--color-white: rgba(255, 255, 255, 0.9);
+	--color-primary: #3ab0b9;
+	--color-accent: #111214;
+	--color-secondary: #5c5c5c;
+	--color-green: #42943a;
+	--color-red: #c85454;
+	--color-highlight: #2f83b8;
+
+	--text-color-primary: rgba(255, 255, 255, 0.9);
+	--text-color-accent: #111214;
+	--text-color-secondary: #3ab0b9;
+	--text-color-grey: #5c5c5c; /* rgba(255, 255, 255, 0.35); */
+	--text-color-red: #c85454;
+	--text-color-green: #42943a;
+
+	--text-s: 0.75rem;
+	--text-s--line-height: 100%;
+	--text-s--font-weight: 400;
+
+	--text-m: 1rem;
+	--text-m--line-height: 100%;
+	--text-m--font-weight: 600;
+
+	--text-l: 1.25rem;
+	--text-l--line-height: 100%;
+	--text-l--font-weight: 600;
+
+	--text-xl: 2.25rem;
+	--text-xl--line-height: 100%;
+	--text-xl--font-weight: 700;
+
+	--text-xxl: 5rem;
+	--text-xxl--line-height: 130%;
+	--text-xxl--font-weight: 900;
+}
+
+body {
+	background-color: var(--color-background);
+}
