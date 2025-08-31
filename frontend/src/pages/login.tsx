@@ -17,8 +17,8 @@ const Login: React.FC = () => {
 	const { updatePreference } = useUserPreferences();
 
 	const [formData, setFormData] = useState({
-		email: "john.doe@example.com", //TODO: remove defuelt value
-		password: "testpassword2",
+		email: "", //TODO: remove defuelt value
+		password: "",
 	});
 
 	const [errors, setErrors] = useState<Record<string, string>>({});

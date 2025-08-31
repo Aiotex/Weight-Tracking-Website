@@ -2,6 +2,8 @@ import axios from "axios";
 
 const baseURL = import.meta.env.VITE_BACKEND_URL;
 
+console.log("Base URL:", baseURL);
+
 export const axiosClient = axios.create({
 	baseURL,
 	headers: {
