@@ -26,7 +26,7 @@ FROM nginxinc/nginx-unprivileged:${NGINX_VERSION} AS runner
 
 USER nginx
 
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx/nginx.conf /etc/nginx/nginx.conf
 COPY --chown=nginx:nginx --from=builder /app/dist /usr/share/nginx/html
 
 EXPOSE 8080

@@ -11,22 +11,24 @@ services:
         environment:
             NODE_ENV: production
             DATABASE_URL: 'postgresql://myuser:mypassword@db:5432/mydatabase'
-
-    backend-dev:
+    backend-dev: # https://docs.docker.com/compose/how-tos/file-watch/
         build:
             context: .
             dockerfile: Dockerfile.dev
         container_name: 'backend-dev'
         image: backend-dev:1
-        restart: always
         ports:
             - 3000:3000
-        volumes:
-            - .:/app
-            - node_modules:/app/node_modules
+        develop:
+            watch:
+                - action: sync
+                  path: .
+                  target: /app
         environment:
             NODE_ENV: development
             DATABASE_URL: 'postgresql://myuser:mypassword@db:5432/mydatabase'
+        env_file:
+            - .env
         depends_on:
             db:
                 condition: service_healthy
@@ -48,7 +50,6 @@ services:
         volumes:
             - pgdata:/var/lib/postgresql/data
 volumes:
-    node_modules:
+    #node_modules:
     pgdata:
-
-# TODO: change image and containers names to acoid nflicts with diffrent projects
+# TODO: change image and containers names to avoind conflicts with diffrent projects

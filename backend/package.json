@@ -9,7 +9,7 @@
 		"prisma:seed": "node prisma/seed.js",
 		"prisma:deploy": "prisma migrate deploy",
 		"docker:build:dev": "docker compose build backend-dev",
-		"docker:dev": "docker compose up backend-dev",
+		"docker:dev": "docker compose up --watch backend-dev",
 		"docker:build:prod": "docker compose build backend-prod",
 		"docker:prod": "docker compose up backend-prod"
 	},

@@ -27,4 +27,6 @@ services:
         environment:
             NODE_ENV: development
             VITE_BACKEND_URL: "http://localhost:3000/api"
+        env_file:
+            - .env
 # TODO: change image and containers names to acoid conflicts with diffrent projects

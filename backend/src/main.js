@@ -12,6 +12,7 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const HOST = process.env.HOST || 'localhost';
 const NODE_ENV = process.env.NODE_ENV || 'production';
 const CORS_OPTIONS = { origin: process.env.CORS_ORIGIN || 'http://localhost:5173', credentials: true };
 
@@ -36,10 +37,9 @@ app.use(errorHandler);
 //app.use(express.static(__dirname + '/assets'))
 
 app.listen(PORT, () => {
-	console.log(`[${process.env.HOST || 'localhost'}] Server listening on port: ${PORT}`);
+	console.log(`[${HOST}] Server listening on port: ${PORT}`);
 	console.log(`[DIR] Image uploads directory: ${getImgPath('')}`);
 	console.log(`[DIR] Serving images from: ${getImgFullPath('')}`);
-	//console.log('[images]', path.join(process.cwd(), process.env.IMG_UPLOAD_DIR));
 	console.log('[environment]', NODE_ENV);
 });
 
