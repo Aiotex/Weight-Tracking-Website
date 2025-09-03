@@ -8,10 +8,8 @@
 		"dev": "nodemon --legacy-watch src/main.js",
 		"prisma:seed": "node prisma/seed.js",
 		"prisma:deploy": "prisma migrate deploy",
-		"docker:build:dev": "docker compose build backend-dev",
-		"docker:dev": "docker compose up --watch backend-dev",
-		"docker:build:prod": "docker compose build backend-prod",
-		"docker:prod": "docker compose up backend-prod"
+		"docker:dev": "docker compose -f compose.dev.yaml up --build --watch",
+		"docker:prod": "docker compose up --build -d"
 	},
 	"keywords": [],
 	"author": "",

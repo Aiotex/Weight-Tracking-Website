@@ -8,10 +8,8 @@
 		"build": "tsc -b && vite build",
 		"lint": "eslint .",
 		"preview": "vite preview",
-		"docker:build:dev": "docker compose build frontend-dev",
-		"docker:dev": "docker compose up --watch frontend-dev",
-		"docker:build:prod": "docker compose build frontend-prod",
-		"docker:prod": "docker compose up frontend-prod"
+		"docker:dev": "docker compose -f compose.dev.yaml up --build --watch",
+		"docker:prod": "docker compose up --build -d"
 	},
 	"dependencies": {
 		"@tailwindcss/vite": "^4.1.11",

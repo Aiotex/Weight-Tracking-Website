@@ -1,55 +1,13 @@
 services:
-    backend-prod: # remeber to run migrations from the CD pipeline before starting the production container
+    backend: # remeber to run migrations from the CD pipeline before starting the production container
         build:
             context: .
             dockerfile: Dockerfile
         container_name: 'backend-prod'
-        image: backend-prod:1
+        image: weighttracker/backend:1.0.0
         restart: always
         ports:
             - 3000:3000
         environment:
             NODE_ENV: production
-            DATABASE_URL: 'postgresql://myuser:mypassword@db:5432/mydatabase'
-    backend-dev: # https://docs.docker.com/compose/how-tos/file-watch/
-        build:
-            context: .
-            dockerfile: Dockerfile.dev
-        container_name: 'backend-dev'
-        image: backend-dev:1
-        ports:
-            - 3000:3000
-        develop:
-            watch:
-                - action: sync
-                  path: .
-                  target: /app
-        environment:
-            NODE_ENV: development
-            DATABASE_URL: 'postgresql://myuser:mypassword@db:5432/mydatabase'
-        env_file:
-            - .env
-        depends_on:
-            db:
-                condition: service_healthy
-    db:
-        image: postgres:16
-        restart: always
-        container_name: 'postgres-dev'
-        environment:
-            POSTGRES_USER: 'myuser'
-            POSTGRES_PASSWORD: 'mypassword'
-            POSTGRES_DB: 'mydatabase'
-        healthcheck:
-            test: ['CMD-SHELL', 'pg_isready -d mydatabase -U myuser']
-            interval: 1s
-            timeout: 5s
-            retries: 10
-        ports:
-            - '5432:5432'
-        volumes:
-            - pgdata:/var/lib/postgresql/data
-volumes:
-    #node_modules:
-    pgdata:
-# TODO: change image and containers names to avoind conflicts with diffrent projects
+            # DATABASE_URL: 'postgresql://myuser:mypassword@db:5432/mydatabase'

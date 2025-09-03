@@ -1,0 +1,28 @@
+services:
+    frontend:
+        build: ./frontend
+        image: weighttracker/frontend:1.0.0
+        container_name: frontend
+        env_file:
+            - ./frontend/.env
+        expose:
+            - '8080'
+
+    backend:
+        build: ./backend
+        image: weighttracker/backend:1.0.0
+        container_name: backend
+        env_file:
+            - ./backend/.env
+        expose:
+            - '3000'
+
+    nginx:
+        build: ./nginx
+        image: weighttracker/nginx:1.0.0
+        container_name: reverse-proxy
+        ports:
+            - '80:80'
+        depends_on:
+            - frontend
+            - backend

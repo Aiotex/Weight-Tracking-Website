@@ -1,32 +1,13 @@
 services:
-    frontend-prod: # with the CD pipeline only upload the build folder to the server
+    frontend: # with the CD pipeline only upload the build folder to the server
         build:
             context: .
             dockerfile: Dockerfile
         container_name: "frontend-prod"
-        image: frontend-prod:1
+        image: weighttracker/frontend:1.0.0
         restart: always
         ports:
             - 8080:8080
         environment:
             NODE_ENV: production
-
-    frontend-dev: # https://docs.docker.com/compose/how-tos/file-watch/
-        build:
-            context: .
-            dockerfile: Dockerfile.dev
-        container_name: "frontend-dev"
-        image: frontend-dev:1
-        ports:
-            - 5173:5173
-        develop:
-            watch:
-                - action: sync
-                  path: .
-                  target: /app
-        environment:
-            NODE_ENV: development
-            VITE_BACKEND_URL: "http://localhost:3000/api"
-        env_file:
-            - .env
 # TODO: change image and containers names to acoid conflicts with diffrent projects

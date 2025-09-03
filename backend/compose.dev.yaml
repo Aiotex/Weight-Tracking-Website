@@ -1,0 +1,41 @@
+services:
+    backend: # https://docs.docker.com/compose/how-tos/file-watch/
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        container_name: 'backend-dev'
+        image: weighttracker/backend:dev
+        ports:
+            - 3000:3000
+        develop:
+            watch:
+                - action: sync
+                  path: .
+                  target: /app
+        environment:
+            NODE_ENV: development
+            DATABASE_URL: 'postgresql://myuser:mypassword@db:5432/mydatabase'
+        env_file:
+            - .env
+        depends_on:
+            db:
+                condition: service_healthy
+    db:
+        image: postgres:16
+        restart: always
+        container_name: 'postgres-dev'
+        environment:
+            POSTGRES_USER: 'myuser'
+            POSTGRES_PASSWORD: 'mypassword'
+            POSTGRES_DB: 'mydatabase'
+        healthcheck:
+            test: ['CMD-SHELL', 'pg_isready -d mydatabase -U myuser']
+            interval: 1s
+            timeout: 5s
+            retries: 10
+        ports:
+            - '5432:5432'
+        volumes:
+            - pgdata:/var/lib/postgresql/data
+volumes:
+    pgdata:
