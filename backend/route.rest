@@ -19,7 +19,7 @@ Content-Type: application/json
 
 {
     "email": "john.doe@example.com",
-    "password": "testpassword2"
+    "password": "password123"
 }
 
 ###
@@ -31,7 +31,7 @@ Cookie: refreshToken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZ
 ###
 
 GET http://localhost:3000/api/users/me
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxfSwiaWF0IjoxNzUzNzEyODYyLCJleHAiOjE3NTYzMDQ4NjJ9.UFL5wDBfAFQpHF68OGmJUUbWsziUVxQU3tUSfVyDDGE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0fSwiaWF0IjoxNzU3MDAwMzU4LCJleHAiOjE3NTcwMDEyNTh9.0O6UkrF_IDoLQKZzHfVnTzEaaJPSEGx0IRtCtZazfA8
 
 ###
 

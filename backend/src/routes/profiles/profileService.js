@@ -9,7 +9,6 @@ import { getImgPath, getImgFullPath } from '../../utils/fileUtils.js';
 export const formatUserResponse = (user) => {
 	const { id, firstName, lastName, email, role } = user;
 	const { avatar, heightCm, dateOfBirth, gender, unitPreference, weekStartsOn } = user.profile;
-	const baseUrl = process.env.BASE_URL || 'http://localhost:3000';
 
 	return {
 		id,
@@ -17,7 +16,7 @@ export const formatUserResponse = (user) => {
 		lastName,
 		email,
 		role,
-		avatarUrl: avatar ? baseUrl + '/images/' + path.basename(avatar) : null,
+		avatarUrl: avatar ? '/images/' + path.basename(avatar) : null, // add to umg utils class
 		heightCm,
 		dateOfBirth: dateOfBirth ? dateOfBirth.toISOString().split('T')[0] : null,
 		gender,
