@@ -223,7 +223,7 @@ export const getWeightAverages = async (userId, group, startDate, endDate, weekS
 							'-',
 							LPAD(EXTRACT(WEEK FROM date + INTERVAL '1 day')::TEXT, 2, '0')
 						) AS week,
-						ROUND(AVG("weightKg")::numeric, 1)::INT AS average
+						ROUND(AVG("weightKg")::numeric, 1) AS average
 					FROM "Weight_Record"
 					WHERE 
 						"userId" = ${userId}
@@ -245,7 +245,7 @@ export const getWeightAverages = async (userId, group, startDate, endDate, weekS
 							'-',
 							LPAD(EXTRACT(WEEK FROM date)::TEXT, 2, '0')
 						) AS week,
-						ROUND(AVG("weightKg")::numeric, 1)::INT AS average
+						ROUND(AVG("weightKg")::numeric, 1) AS average
 					FROM "Weight_Record"
 					WHERE 
 						"userId" = ${userId}
@@ -264,7 +264,7 @@ export const getWeightAverages = async (userId, group, startDate, endDate, weekS
 			await prisma.$queryRaw`
 			SELECT 
 				TO_CHAR(date, 'YYYY-MM') AS month,
-				ROUND(AVG("weightKg")::numeric, 1)::INT AS average
+				ROUND(AVG("weightKg")::numeric, 1) AS average
 			FROM "Weight_Record"
 			WHERE 
 				"userId" = ${userId}
@@ -277,7 +277,7 @@ export const getWeightAverages = async (userId, group, startDate, endDate, weekS
 			await prisma.$queryRaw`
 			SELECT 
 				TO_CHAR(date, 'YYYY') AS year,
-				ROUND(AVG("weightKg")::numeric, 1)::INT AS average
+				ROUND(AVG("weightKg")::numeric, 1) AS average
 			FROM "Weight_Record"
 			WHERE 
 				"userId" = ${userId}

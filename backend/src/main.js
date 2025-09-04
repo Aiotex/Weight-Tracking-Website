@@ -4,9 +4,7 @@ import routes from './routes/routes.js';
 import cookieParser from 'cookie-parser';
 import errorHandler from './middlewares/errorHandler.js';
 import HttpException from './utils/httpException.js';
-import path from 'path';
 import cors from 'cors';
-import { IMG_UPLOAD_DIR } from './constants.js';
 import { getImgFullPath, getImgPath } from './utils/fileUtils.js';
 dotenv.config();
 
@@ -56,3 +54,6 @@ app.listen(PORT, () => {
 //TODO: look at morgan module for logging
 //TODO: look at helmet module for security
 //TODO: look at debuggers
+
+//TODO: save static images outside the docker image so it wont disappear after it rebuilds
+//TODO: change date handeling to account for time zones

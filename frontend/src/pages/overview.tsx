@@ -155,6 +155,7 @@ const Overview: React.FC = React.memo(() => {
 						value={selectedPeriod}
 						placeholder="Select time period"
 						onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
+							console.log("Selected period:", e?.target?.value);
 							setSelectedPeriod(e?.target?.value as PeriodKey);
 						}}
 					/>

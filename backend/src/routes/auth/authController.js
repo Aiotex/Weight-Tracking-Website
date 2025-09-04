@@ -16,7 +16,7 @@ router.post('/register', verify(registerSchema), async (req, res) => {
 	// set refresh token as HttpOnly cookie
 	res.cookie('refreshToken', refreshToken, {
 		httpOnly: true,
-		secure: process.env.NODE_ENV === 'production',
+		// secure: process.env.NODE_ENV === 'production',
 		sameSite: 'strict',
 		path: 'api/auth/token', // restricts cookie to only refresh endpoint
 		maxAge: ms(process.env.REFRESH_TOKEN_EXPIRES_IN),
@@ -36,7 +36,7 @@ router.post('/login', verify(loginSchema), async (req, res) => {
 	// set refresh token as HttpOnly cookie
 	res.cookie('refreshToken', refreshToken, {
 		httpOnly: true,
-		secure: process.env.NODE_ENV === 'production',
+		// secure: process.env.NODE_ENV === 'production',
 		sameSite: 'strict',
 		path: 'api/auth/token', // restricts cookie to only refresh endpoint
 		maxAge: ms(process.env.REFRESH_TOKEN_EXPIRES_IN),

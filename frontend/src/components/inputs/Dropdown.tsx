@@ -92,6 +92,8 @@ const Dropdown: React.FC<DropdownProps> = ({
 
 			// Call the form-style onChange
 			(onChange as React.ChangeEventHandler<HTMLInputElement>)(syntheticEvent);
+		} else {
+			onChange?.({ target: { value: option.key } } as React.ChangeEvent<HTMLInputElement>);
 		}
 
 		onBlur?.();
